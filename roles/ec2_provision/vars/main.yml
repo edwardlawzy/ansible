@@ -1,0 +1,6 @@
+region: us-east-1
+#key_name: "{{ hostvars['localhost']['key_name']}}"
+private_key_path: "~/.ssh/{{ key_pair_name }}.pem"
+instance_type: t3.small
+ami_id: ami-0360c520857e3138f
+security_group: my_sg

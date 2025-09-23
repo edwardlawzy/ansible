@@ -1,0 +1,16 @@
+---
+#- name: Create VPC
+  #hosts: localhost
+  #connection: local
+  #gather_facts: false
+
+ # tasks:
+- name: Create custom VPC
+  amazon.aws.ec2_vpc_net:
+    name: my-custom-vpc
+    cidr_block: 10.0.0.0/16
+    region: us-east-1
+    state: present
+  register: vpc_info
+  #set_fact:
+  #vpc_id: "{{vpc_info.vpc.id}}"

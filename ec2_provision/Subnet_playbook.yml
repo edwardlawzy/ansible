@@ -1,0 +1,17 @@
+---
+- name: Create Subnet
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  
+  tasks:
+    - name: Create public subnet in AZ A
+      amazon.aws.ec2_vpc_subnet:
+        vpc_id: "{{ vpc_info.vpc.id }}"
+        cidr: 10.0.1.0/24
+        az: us-east-1a
+        state: present
+        map_public_ip_on_launch: true
+        tags:
+          Name: my-public-subnet-a
+        register: public_subnet_info

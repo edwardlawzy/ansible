@@ -1,0 +1,12 @@
+---
+- name: Create Security Group with All Traffic Allowed
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Create Internet Gateway
+      amazon.aws.ec2_vpc_igw:
+        vpc_id: "{{ vpc_info.vpc.id }}"
+        state: present
+      register: igw_info

@@ -1,0 +1,6 @@
+- name: Create Internet Gateway
+  amazon.aws.ec2_vpc_igw:
+    vpc_id: "{{ vpc_info.vpc.id }}"
+    state: present
+    region: "us-east-1"
+  register: igw_info

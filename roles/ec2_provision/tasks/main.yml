@@ -1,0 +1,39 @@
+#- name: Load environment-specific variables
+#  ansible.builtin.include_vars:
+#    file: "../keypair/vars/main.yml"
+
+- name: Launch EC2 instance
+  amazon.aws.ec2_instance:
+    name: my-ansible-instance
+    region: "{{ region }}"
+    #vpc_id: "{{ vpc_info.vpc.id }}"
+    vpc_subnet_id: "{{public_subnet_info.subnet.id}}"
+    key_name: "{{ key_pair_name }}"
+    instance_type: "{{ instance_type }}"
+    image_id: "{{ ami_id }}"
+    network:
+      assign_public_ip: yes    
+    security_group: my_sg 
+    wait: yes
+    tags:
+      Name: Ansible EC2 Instance
+  register: ec2_instance_info
+
+- name: Add new instance to in-memory inventory
+  ansible.builtin.add_host:
+    hostname: "{{ ec2_instance_info.instances[0].public_ip_address }}"
+    groupname: new_ec2_hosts
+    ansible_user: ubuntu
+    ansible_private_key_file: "{{ private_key_path }}"
+
+- name: Wait for SSH to be available
+  ansible.builtin.wait_for_connection:
+    delay: 30
+    timeout: 300
+  delegate_to: "{{ ec2_instance_info.instances[0].public_ip_address }}"
+  when: ec2_instance_info.changed
+
+- name: Verify connection (optional)
+  ansible.builtin.ping:
+  delegate_to: "{{ ec2_instance_info.instances[0].public_ip_address }}"
+  when: ec2_instance_info.changed

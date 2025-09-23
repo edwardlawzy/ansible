@@ -1,0 +1,3 @@
+key_pair_name: "my-ansible-key"
+key_pair_path: "~/.ssh/{{ key_pair_name }}.pem"
+aws_region: "us-east-1"

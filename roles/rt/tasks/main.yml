@@ -1,0 +1,51 @@
+- name: Create public route table
+  amazon.aws.ec2_vpc_route_table:
+    vpc_id: "{{ vpc_info.vpc.id }}"
+    tags:
+      Name: my-public-route-table
+    subnets:
+      - "{{public_subnet_info.subnet.id}}"
+    routes:
+      - dest: 0.0.0.0/0
+        gateway_id: "{{ igw_info.gateway_id }}"
+    state: present
+    region: "us-east-1"
+  register: public_rt_info
+
+#- name: Add route to Internet Gateway
+#  amazon.aws.ec2_vpc_route_table:
+#    route_table_id: "{{ public_rt_info.route_table.id }}"
+#    dest: 0.0.0.0/0
+#    gateway_id: "{{ igw_info.gateway_id }}"
+#    region: "us-east-1"
+#    state: present
+#
+#- name: Associate public subnet with public route table
+#  amazon.aws.ec2_vpc_route_table:
+#    subnet_id: "{{ public_subnet_info.subnet.id }}"
+#    route_table_id: "{{ public_rt_info.route_table.id }}"
+#    region: "us-east-1"
+#    state: present
+#- name: Associate subnet with route table
+#  amazon.aws.ec2_vpc_route_table:
+#    route_table_id: "{{public_rt_info.route_table.id}}"
+#    #subnet_id: "{{public_subnet_info.subnet.id}}"
+#    vpc_id: "{{ vpc_info.vpc.id }}"
+#    region: "us-east-1"
+#    state: present
+#
+#
+#- name: Set up public subnet route table
+#  amazon.aws.ec2_vpc_route_table:
+#    vpc_id: "{{ vpc_info.vpc.id }}"
+#    region: us-west-1
+#    tags:
+#      Name: ansible_Public
+#    subnets:
+#      - "{{public_subnet_info.subnet.id}}"
+#    routes:
+#      - dest: 0.0.0.0/0
+#        gateway_id: "{{ igw_info.gateway_id }}"
+#      #- dest: 0.0.0.0/0
+#      #  gateway_id: "{{ transit_gateway_id }}"
+#  register: public_route_table

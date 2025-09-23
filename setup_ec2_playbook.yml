@@ -1,0 +1,48 @@
+---
+- name: Create VPC
+  hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - vpc
+
+- name: Create Subnet 
+  hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - subnet
+
+- name: Create Internet Gateway
+  hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - igw
+
+- name: Create Routing Table
+  hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - rt
+- name: Create Routing Table
+  hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - sg
+
+- name: Create Key Pair
+  hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - keypair
+
+- name: Create Key Pair
+  hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - ec2_provision
