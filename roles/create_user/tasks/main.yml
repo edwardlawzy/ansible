@@ -1,0 +1,37 @@
+- name: Create a new SSH user for application deployment
+  ansible.builtin.user:
+    name: myappuser
+    create_home: yes
+    password: "password"
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/myappuser 
+    shell: /bin/bash
+    #groups: docker 
+    append: yes
+
+#- name: Generate an OpenSSH keypair
+#  community.crypto.openssh_keypair:
+#    path: /home/myappuser/.ssh/myappuser
+#    type: ed25519 
+#    size: 2048 
+#    force: no 
+#    comment: "Ansible-generated key for myappuser"
+#  register: ssh_key_result
+#
+#- name: Display public key content
+#  debug:
+#    msg: "Public key: {{ ssh_key_result.public_key }}"
+
+#- name: Add SSH public key for the new user
+#  ansible.builtin.authorized_key:
+#    user: myappuser
+#    state: present
+
+- name: Create sudoers file for the user
+  copy:
+    content: "myappuser ALL=(ALL) NOPASSWD:ALL"
+    dest: "/etc/sudoers.d/myappuser"
+    owner: root
+    group: root
+    mode: '0440'

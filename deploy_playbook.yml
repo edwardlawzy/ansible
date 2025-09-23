@@ -1,0 +1,62 @@
+---
+- name: Install Git
+  #hosts: "{{ ec2_instance_info.instances[0].public_ip_address }}" 
+  hosts: [ec2]
+  become: true
+  roles:
+    - install_git
+- name: Create myappuser
+  #hosts: "{{ ec2_instance_info.instances[0].public_ip_address }}" 
+  hosts: [ec2]
+  become: true
+  roles:
+    - create_user
+
+- name: Install Docker
+  #hosts: "{{ ec2_instance_info.instances[0].public_ip_address }}" 
+  hosts: [ec2]
+  become: true
+  roles:
+    - install_docker
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+- name: Ensure Git is installed (for Debian/Ubuntu)
+  ansible.builtin.apt:
+    name: git
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Ensure Git is installed (for RedHat/CentOS/Amazon Linux)
+  ansible.builtin.yum:
+    name: git
+    state: present
+  when: ansible_os_family == "RedHat"

@@ -1,0 +1,3 @@
+app_user_name: 'myappuser'
+app_user_pubkey_path: '~/.ssh/myappuser_key.pub'
+app_user_password: 'password' 
