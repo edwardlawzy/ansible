@@ -1,0 +1,7 @@
+- name: Build a Backend Docker image
+  community.docker.docker_image:
+    build:
+      path: /home/myappuser/dependency-track
+    name: backend
+    tag: latest
+    source: build

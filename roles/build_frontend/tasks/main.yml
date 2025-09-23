@@ -1,0 +1,7 @@
+- name: Build a frontend Docker image
+  community.docker.docker_image:
+    build:
+      path: /home/myappuser/frontend
+    name: frontend
+    tag: latest
+    source: build

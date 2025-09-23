@@ -1,0 +1,5 @@
+- name: Clone Backend GitHub repository
+  git:
+    repo: 'https://github.com/edwardlawzy/dependency-track.git' 
+    dest: '/home/myappuser/dependency-track'
+    version: master

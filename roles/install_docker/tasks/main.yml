@@ -81,8 +81,9 @@
     - docker-ce-cli
     - containerd.io
     - python3-docker
+    - docker-compose-plugin
 
-#- name: Install Python Docker module
+#- name: Install Docker Compose 
 #  ansible.builtin.pip:
-#    name: docker
+#    name: docker-compose
 #    state: present

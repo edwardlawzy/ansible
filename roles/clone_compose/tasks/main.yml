@@ -1,0 +1,5 @@
+- name: Clone Compose GitHub repository
+  git:
+    repo: 'https://github.com/edwardlawzy/ansible.git'
+    dest: '/home/myappuser/compose'
+    version: main 

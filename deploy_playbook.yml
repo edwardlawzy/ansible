@@ -19,14 +19,51 @@
   roles:
     - install_docker
 
+- name: Clone Backend
+  #hosts: "{{ ec2_instance_info.instances[0].public_ip_address }}" 
+  hosts: [ec2]
+  become: true
+  #become_user: myappuser
+  roles:
+    - clone_backend
 
+- name: Clone Frontend
+  #hosts: "{{ ec2_instance_info.instances[0].public_ip_address }}" 
+  hosts: [ec2]
+  become: true
+  roles:
+    - clone_frontend
 
-
-
-
-
-
-
+- name: Clone Compose
+  #hosts: "{{ ec2_instance_info.instances[0].public_ip_address }}" 
+  hosts: [ec2]
+  become: true
+  roles:
+    - clone_compose
+    
+- name: Build Backend 
+  #hosts: "{{ ec2_instance_info.instances[0].public_ip_address }}" 
+  hosts: [ec2]
+  become: true
+  roles:
+    - build_backend
+    
+- name: Build Frontend 
+  #hosts: "{{ ec2_instance_info.instances[0].public_ip_address }}" 
+  hosts: [ec2]
+  become: true
+  roles:
+    - build_frontend
+   
+- name: Compose Up 
+  #hosts: "{{ ec2_instance_info.instances[0].public_ip_address }}" 
+  hosts: [ec2]
+  become: true
+  roles:
+    - compose_up
+   
+    
+    
 
 
 

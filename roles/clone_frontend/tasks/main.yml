@@ -1,0 +1,5 @@
+- name: Clone Frontend GitHub repository
+  git:
+    repo: 'https://github.com/edwardlawzy/frontend.git'
+    dest: '/home/myappuser/frontend'
+    version: master
