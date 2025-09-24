@@ -1,0 +1,9 @@
+---
+- name: Delete EC2
+  hosts: localhost
+  connection: local
+  vars_files:
+    - ./Instance.yml
+  become: true
+  roles:
+    - delete_ec2
