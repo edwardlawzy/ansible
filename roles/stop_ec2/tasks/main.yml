@@ -1,0 +1,8 @@
+- name: Stop specific EC2 instances
+  amazon.aws.ec2_instance:
+    state: stopped
+    name: my-ansible-instance
+    instance_ids:
+      - "{{ instance_id }}"
+    region: us-east-1
+  delegate_to: localhost

@@ -1,0 +1,9 @@
+---
+- name: Stop EC2
+  hosts: localhost
+  connection: local
+  vars_files:
+    - ./Instance.yml
+  become: true
+  roles:
+    - start_ec2

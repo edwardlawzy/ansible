@@ -1,0 +1,8 @@
+- name: Start specific EC2 instances
+  amazon.aws.ec2_instance:
+    state: running
+    name: my-ansible-instance
+    instance_ids:
+      - "{{ instance_id }}"
+    region: us-east-1
+  delegate_to: localhost

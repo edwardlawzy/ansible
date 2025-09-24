@@ -19,6 +19,13 @@
       Name: Ansible EC2 Instance
   register: ec2_instance_info
 
+- name: Output Instance Data 
+  ansible.builtin.copy:
+    content:  "{{ec2_instance_info.instances[0]}}"
+    dest: ./Instance.yml
+    mode: '0644'
+
+
 - name: Add new instance to in-memory inventory
   ansible.builtin.add_host:
     hostname: "{{ ec2_instance_info.instances[0].public_ip_address }}"

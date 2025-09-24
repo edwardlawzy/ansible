@@ -40,7 +40,7 @@
   roles:
     - keypair
 
-- name: Create Key Pair
+- name: Provision EC2 
   hosts: localhost
   connection: local
   become: true
