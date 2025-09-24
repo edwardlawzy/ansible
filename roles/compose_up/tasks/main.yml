@@ -1,5 +1,3 @@
 - name: Start Docker Compose services
-  community.docker.docker_compose_v2:
-    project_src: /home/myappuser/compose
-    #state: present
-    #build: no
+  ansible.builtin.command: |
+    docker compose -f /home/myappuser/compose/docker-compose.yml up
