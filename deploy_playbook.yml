@@ -1,6 +1,8 @@
 ---
 - name: Install Git
-  #hosts: "{{ ec2_instance_info.instances[0].public_ip_address }}" 
+  #vars_files:
+  #  - ./Instance.yml
+  #hosts: "{{ public_ip_address }}"
   hosts: [ec2]
   become: true
   roles:

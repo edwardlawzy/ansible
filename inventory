@@ -1,2 +1,2 @@
 [ec2]
-ec2_host ansible_host=98.88.18.112 ansible_user=ubuntu ansible_ssh_private_key_file=/root/.ssh/my-ansible-key.pem
+ec2_host ansible_host=54.234.63.100 ansible_user=ubuntu ansible_ssh_private_key_file=/root/.ssh/my-ansible-key.pem

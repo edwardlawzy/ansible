@@ -14,6 +14,12 @@
     network:
       assign_public_ip: yes    
     security_group: my_sg 
+    volumes: 
+      - device_name: /dev/sda1 
+        ebs:
+          volume_size: 15 
+          volume_type: gp2
+          delete_on_termination: yes
     wait: yes
     tags:
       Name: Ansible EC2 Instance
@@ -24,7 +30,11 @@
     content:  "{{ec2_instance_info.instances[0]}}"
     dest: ./Instance.yml
     mode: '0644'
-
+- name: Output Instance IP
+  ansible.builtin.copy:
+    content:  "{{ec2_instance_info.instances[0].public_ip_address}}"
+    dest: ./inventory.yml
+    mode: '0644'
 
 - name: Add new instance to in-memory inventory
   ansible.builtin.add_host:
